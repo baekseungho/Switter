@@ -1,4 +1,4 @@
-import { firebaseInstance, authService } from "fbase";
+import { firebaseInstance } from "fbase";
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -8,6 +8,8 @@ import {
   GithubAuthProvider,
 } from "firebase/auth";
 import React, { useState } from "react";
+
+export const auth = getAuth();
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -53,7 +55,7 @@ const Auth = () => {
     } else if (name === "github") {
       provider = new GithubAuthProvider();
     }
-    const data = await authService.signInwithPoput(authService, provider);
+    const data = await signInWithPopup(auth, provider);
     console.log(data);
   };
   return (
